@@ -1,12 +1,12 @@
 package ru.andzhey.clinic;
 
 /**
- * Created by Анджей on 13.05.2016.
+ * Created by Анджей on 14.05.2016.
  */
-public class Cat implements Pet{
+public class Dog implements Pet {
     private String name;
 
-    public Cat(final String name) {
+    public Dog(final String name) {
         this.name = name;
     }
 
@@ -22,6 +22,6 @@ public class Cat implements Pet{
 
     @Override
     public String getPetType() {
-        return "Cat";
+        return "ru.andzhey.clinic.ConsoleHelper.Dog";
     }
 }

@@ -12,6 +12,10 @@ public class Clinic {
     private final List<Client> clients;
     int id = 1;
 
+    public List<Client> getClients() {
+        return clients;
+    }
+
     public Clinic() {
         clients = new ArrayList<Client>();
         isExit = false;
@@ -29,8 +33,13 @@ public class Clinic {
         ConsoleHelper.writeMessage("exit - выход из программы");
     }
 
+    public void addClient(Client client) {
+        clients.add(client);
+    }
+
     /**
      * Add clients to clinic
+     *
      * @throws IOException
      */
     public void addClient() throws IOException {
@@ -44,7 +53,7 @@ public class Clinic {
         if (petType.equalsIgnoreCase("cat")) {
             pet = new Cat(petName);
         } else if (petType.equalsIgnoreCase("dog")) {
-            pet = new ConsoleHelper.Dog(petName);
+            pet = new Dog(petName);
         } else {
             pet = new ChudoUdo(petName, petType);
         }
@@ -83,6 +92,7 @@ public class Clinic {
 
     /**
      * Remove client by name
+     *
      * @throws IOException
      */
     public void removeClientByName() throws IOException {
@@ -120,8 +130,28 @@ public class Clinic {
         }
     }
 
+    public void removeClientByName(String name) throws IOException {
+        ArrayList<Client> findClients = new ArrayList<Client>();
+
+        for (Client client : clients) {
+            if (client.getName().equalsIgnoreCase(name)) {
+                findClients.add(client);
+            }
+        }
+        if (!findClients.isEmpty()) {
+            for (int i = 0; i < findClients.size(); i++) {
+                for (int j = 0; j < clients.size(); j++) {
+                    if (clients.get(j).equals(findClients.get(i))) {
+                        clients.remove(clients.get(j));
+                    }
+                }
+            }
+        } else return;
+    }
+
     /**
      * Start working clinic
+     *
      * @throws IOException
      */
     public void start() throws IOException {
